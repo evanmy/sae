@@ -9,6 +9,8 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 from functions.visualization import argmax_ch
 
+# Gumbel softmax implementation based on https://github.com/YongfeiYan/Gumbel_Softmax_VAE
+
 def dice_loss(pred, target, ign_first_ch=True):
     eps = 1
     assert pred.size() == target.size(), 'Input and target are different dim'
