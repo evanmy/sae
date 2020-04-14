@@ -18,7 +18,9 @@ The code was tested on:
 ## Instruction
 
 ### Prepocessing 
-T1-weighted 3D brain MRI scans was preprocessed using FreeSurfer [1]. This includes skull stripping, bias-field correction, intensity normalization, affine registration to Talairach space, and resampling to 1 mm3 isotropic resolution. We provide some example volumes in `./data/vols/` and automatic segmentations in `./data/labels/`. These images are derived from the OASIS dataset [2]. We also provide the probabilistic atlas used in our experiment in the data folder. 
+T1-weighted 3D brain MRI scans was preprocessed using FreeSurfer [1]. This includes skull stripping, bias-field correction, intensity normalization, affine registration to Talairach space, and resampling to 1 mm<sup>3</sup> isotropic resolution. The original images had a shape of 256x256x256, which was futher cut using ((48, 48), (31, 33), (3, 29)) along the sides to elimate empty space. 
+
+Unfortunately, Buckner40 and its manual segmentation are not public dataset. However, we provide some example OASIS [2] volumes in `./data/vols/` and automatic segmentations in `./data/labels/`. The labels legend can be found in the [FreeSurfer webpage](https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/AnatomicalROI/FreeSurferColorLUT). We also provide the probabilistic atlas that we used in our experiment in the data folder. Check `functions/dataset.py` for further details on how we convert these numpy files into torch tensor. 
 
 ### Training
 Once your MRI has been preprocessed, the next step is to obtain a good initialization for the encoder. This is accomplish by first mapping your training brain MRI to the probabilistic atlas. As an example, we provide our initialization in `./weights/pretrained_encoder.pth.tar`. However, we recommend pretraining your own encoder for your dataset in order to obtain the best results.
