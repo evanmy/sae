@@ -24,11 +24,15 @@ Once your MRI has been preprocessed, the next step is to obtain a good initializ
 
 To train SAE, run `python train.py 0 2 --compute_dice`
 
+Choose which of your gpus you want to use through `args.gpus`. Note that our current model only support `--args.batch_size=1` due to memory and computational constraint.
+
 One important parameters in the script is `args.sigma`. Setting `args.sigma = 2` allows you to estimate the variance σ
 in 1/(2σ<sup>2</sup>) ||x-x<sup>'</sup>|| as described in the paper. Setting `args.sigma = 0` allows you to set a fixed weight 
-α to weight the reconstruction term α||x-x<sup>'</sup>||
+α to the reconstruction term α||x-x<sup>'</sup>||
 
-The parameter  `args.beta` puts weight on the L<sub>mrf</sub>
+The parameter `--args.beta` puts weight on the L<sub>mrf</sub>. If this term is not 0, `--args.k` is used to determine the size of the neighboorhood constraint. 
+
+Finally, `--compute_dice` allows you to track the dice score of your prediction agaisnt the ground truth label. This is *not* used for training or model selection, but it can help you debug your code during training. 
 
 ## References
 [1] Bruce Fischl. Freesurfer. Neuroimage, 62(2):774–781, 2012
