@@ -23,7 +23,7 @@ T1-weighted 3D brain MRI scans was preprocessed using FreeSurfer [1]. This inclu
 Unfortunately, Buckner40 and its manual segmentation are not public dataset. However, we provide some example OASIS [2] volumes in `./data/vols/` and automatic segmentations in `./data/labels/`. The labels legend can be found in the [FreeSurfer webpage](https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/AnatomicalROI/FreeSurferColorLUT). We also provide the probabilistic atlas that we used in our experiment in the data folder. Check `functions/dataset.py` for further details on how we convert these numpy files into torch tensor. 
 
 ### Training
-Once your MRI has been preprocessed, the next step is to obtain a good initialization for the encoder. This is accomplish by first mapping your training brain MRI to the probabilistic atlas. As an example, we provide our initialization in `./weights/pretrained_encoder.pth.tar`. However, we recommend pretraining your own encoder for your dataset in order to obtain the best results.
+Once your MRI has been preprocessed, the next step is to obtain a good initialization for the encoder. This is accomplish by first mapping your training brain MRI to the probabilistic atlas. As an example, we provide our initialization in `./weights/pretrained_encoder.pth.tar`. However, you should pretrain your own encoder for your dataset in order to obtain the best results.
 
 To train SAE, run `python train.py 0 2 --compute_dice`
 
@@ -39,6 +39,9 @@ Finally, `--compute_dice` allows you to track the dice score of your prediction 
 
 ### Evaluation
 Run `python test.py 0`. It will return a dictionary which can be loaded using `torch.load(result.pth.tar')['stat']`. It has 13 columns. The 12 first column contain the dice loss (1-dice) of 12 region of interest (rois). Namely: pallidum, amygdala, caudate, cerebral cortex, hippocampus, thalamus, putamen, cerebral wm, cerebellum cortex, lateral ventricle, cerebellum wm and brain-stem. The last column is the average of the rois.
+
+## Contact
+Feel free to open an issue in github for any problems or questions.
 
 ## References
 [1] Bruce Fischl. Freesurfer. Neuroimage, 62(2):774–781, 2012
