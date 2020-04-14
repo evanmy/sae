@@ -34,6 +34,9 @@ The parameter `--args.beta` puts weight on the L<sub>mrf</sub>. If this term is 
 
 Finally, `--compute_dice` allows you to track the dice score of your prediction agaisnt the ground truth label. This is *not* used for training or model selection, but it can help you debug your code during training. 
 
+### Evaluation
+Run `python test.py 0`. It will return a dictionary which can be loaded using `torch.load(result.pth.tar')['stat']`. It has 13 columns. The 12 first column contain the dice loss (1-dice) of 12 region of interest (rois). Namely: pallidum, amygdala, caudate, cerebral cortex, hippocampus, thalamus, putamen, cerebral wm, cerebellum cortex, lateral ventricle, cerebellum wm and brain-stem. The last column is the average of the rois.
+
 ## References
 [1] Bruce Fischl. Freesurfer. Neuroimage, 62(2):774–781, 2012
 
