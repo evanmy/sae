@@ -7,7 +7,6 @@ from torch import nn
 from tqdm import tqdm
 import torch.nn.functional as F
 from torch.autograd import Variable
-from skimage.transform import rotate
 from functions.visualization import argmax_ch
 
 def dice_loss(pred, target, ign_first_ch=True):

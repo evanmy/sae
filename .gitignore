@@ -39,7 +39,6 @@ Thumbs.db
 
 # Path #
 ########
-data/
 savepoints/
 __pycache__/
 .ipynb_checkpoints/
