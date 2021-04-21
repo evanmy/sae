@@ -103,7 +103,7 @@ def padder(input, kernel_size):
 
 def normalize_dim1(x):
     '''
-    Ensure that dim1 sums up to zero for proper probabilistic interpretation
+    Ensure that dim1 sums up to one for proper probabilistic interpretation
     '''
     normalizer = torch.sum(x, dim=1, keepdim=True)
     return x/normalizer
